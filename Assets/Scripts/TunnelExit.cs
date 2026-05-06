@@ -6,9 +6,17 @@ public class TunnelExit : MonoBehaviour
     public GameObject explosionPrefab;
     public GameObject rocks;
     public FinishLineTrigger finishTrigger;
+    public AudioSource explosionSound;
+    public GameObject notEnoghPanel;
 
     private bool playerInside = false;
     private bool exploded = false;
+
+    void Start()
+    {
+        if (notEnoghPanel != null)
+            notEnoghPanel.SetActive(false);
+    }
 
     void Update()
     {
@@ -23,7 +31,21 @@ public class TunnelExit : MonoBehaviour
             else
             {
                 Debug.Log("Не хватает ресурсов!");
+                
+                // Запускаем корутину с длительностью 2.5 секунды
+                StartCoroutine(ShowTemporaryMessage(2.5f));
             }
+        }
+    }
+
+    // Корутина: показать панель на несколько секунд, потом скрыть
+    IEnumerator ShowTemporaryMessage(float duration)
+    {
+        if (notEnoghPanel != null)
+        {
+            notEnoghPanel.SetActive(true);   // Включаем
+            yield return new WaitForSeconds(duration); // Ждём
+            notEnoghPanel.SetActive(false);  // Выключаем
         }
     }
 
@@ -40,6 +62,11 @@ public class TunnelExit : MonoBehaviour
             
             // 2. Запускаем разлет камней
             BreakRocks();
+
+            if (explosionSound != null)
+            {
+                explosionSound.Play();
+            }
 
             // 3. Ждем окончания взрыва перед победой
             if (ps != null)

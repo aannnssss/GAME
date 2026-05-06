@@ -43,6 +43,6 @@ public class FinishLineTrigger : MonoBehaviour
         // 3. Опционально: замораживаем игру (раскомментируй, если нужно)
         // Time.timeScale = 0f;
 
-        Debug.Log("🏁 ИГРА ЗАВЕРШЕНА!");
+        Debug.Log("ИГРА ЗАВЕРШЕНА!");
     }
 }
