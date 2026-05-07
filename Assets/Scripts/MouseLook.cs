@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float mouseSensitivity = 120f;
+    public float mouseSensitivity = 120f; // скорость поворота
     public Transform playerBody;
 
-    float xRotation = 0f;
+    float xRotation = 0f; // накопители углов поворота
     float yRotation = 0f;
 
     void Start()

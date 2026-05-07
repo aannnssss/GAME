@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchHeight = 1.2f;
     public float crouchCameraOffset = -0.5f;
     
-    private float defaultCameraY;
+    private float defaultCameraY; // запомнить где была камера
     private bool isCrouching = false;
     private Vector3 originalColliderCenter;
 

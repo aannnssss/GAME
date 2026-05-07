@@ -118,7 +118,7 @@ public class TunnelExit : MonoBehaviour
     {
         rocks.SetActive(false);
     }
-       IEnumerator FinishEscapeAfterExplosion(float delay, GameObject explosion)
+    IEnumerator FinishEscapeAfterExplosion(float delay, GameObject explosion)
     {
         // ждём, пока взрыв проиграется
         yield return new WaitForSeconds(delay);

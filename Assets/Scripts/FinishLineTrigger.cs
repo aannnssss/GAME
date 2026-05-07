@@ -11,7 +11,7 @@ public class FinishLineTrigger : MonoBehaviour
     public void EnableFinishLine()
     {
         isReady = true;
-        GetComponent<Collider>().isTrigger = true;
+        // GetComponent<Collider>().isTrigger = true;
     }
 
     void OnTriggerEnter(Collider other)

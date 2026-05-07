@@ -12,15 +12,15 @@ public class ZombieAI : MonoBehaviour
     public Transform eyes;
     public LayerMask coverLayer;
     public float viewCheckInterval =3f; // Проверка зрения не каждый кадр
-    public float loseDelay = 2f;
+    public float loseDelay = 2f; // Задержка перед потерей игрока из виду
     
-    private NavMeshAgent agent;
+    private NavMeshAgent agent; // Обход препятствий
     private Transform player;
     private int currentPoint = 0;
     private bool isChasing = false;
-    private float lastViewCheck;
+    private float lastViewCheck; // Последняя проверка зрения
     private bool canSeePlayer;
-    private float lastTimeSeen;
+    private float lastTimeSeen; // Когда в посл раз видел игрока
 
 
     void Start()

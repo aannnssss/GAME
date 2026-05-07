@@ -20,6 +20,6 @@ public class CollectItem : MonoBehaviour
                 gm.explosives++;
 
             Destroy(gameObject);
-        }
+        } 
     }
 }
