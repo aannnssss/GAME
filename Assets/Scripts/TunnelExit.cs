@@ -32,7 +32,6 @@ public class TunnelExit : MonoBehaviour
             {
                 Debug.Log("Не хватает ресурсов!");
                 
-                // Запускаем корутину с длительностью 2.5 секунды
                 StartCoroutine(ShowTemporaryMessage(2.5f));
             }
         }
@@ -80,14 +79,12 @@ public class TunnelExit : MonoBehaviour
     {
         foreach (Transform rock in rocks.transform)
         {
-            // УДАЛЯЕМ Mesh Collider (он несовместим с динамической физикой)
             MeshCollider meshCol = rock.GetComponent<MeshCollider>();
             if (meshCol != null)
             {
                 Destroy(meshCol);
             }
 
-            // Добавляем Rigidbody
             Rigidbody rb = rock.GetComponent<Rigidbody>();
             if (rb == null) 
             {

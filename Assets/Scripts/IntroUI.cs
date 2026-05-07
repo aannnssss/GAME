@@ -8,9 +8,9 @@ public class IntroUI : MonoBehaviour
 
     void Start()
     {
-        introPanel.SetActive(true); // показать при старте
+        introPanel.SetActive(true);
         winPanel.SetActive(false);
-        Time.timeScale = 0f;       // остановить игру
+        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -18,7 +18,7 @@ public class IntroUI : MonoBehaviour
     public void CloseIntro()
     {
         introPanel.SetActive(false);
-        Time.timeScale = 1f;       // продолжить игру
+        Time.timeScale = 1f;
         mouseLook.LockCursor();
     }
 }

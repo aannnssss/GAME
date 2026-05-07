@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Ссылки")]
     public Rigidbody rb;
-    public Transform cameraTransform; // ← Перетащи сюда камеру из инспектора
-    public CapsuleCollider playerCollider; // ← Перетащи коллайдер игрока
+    public Transform cameraTransform;
+    public CapsuleCollider playerCollider;
     
     [Header("Настройки приседания")]
     public float standHeight = 2f;
@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Определяем текущую скорость
         float currentSpeed = walkSpeed;
         
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -67,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             cameraTransform.localPosition = camPos;
         }
         
-        // Уменьшаем коллайдер (если есть)
+        // Уменьшаем коллайдер
         if (playerCollider != null)
         {
             playerCollider.height = crouchHeight;

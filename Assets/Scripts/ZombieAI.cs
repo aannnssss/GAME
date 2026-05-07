@@ -9,9 +9,9 @@ public class ZombieAI : MonoBehaviour
     public GameObject gameOverPanel;
     
     [Header("Зрение")]
-    public Transform eyes; // Перетащи сюда пустой объект на уровне "глаз" зомби
-    public LayerMask coverLayer; // Слой для укрытий (настрой в инспекторе)
-    public float viewCheckInterval =3f; // Проверка зрения не каждый кадр (оптимизация)
+    public Transform eyes;
+    public LayerMask coverLayer;
+    public float viewCheckInterval =3f; // Проверка зрения не каждый кадр
     public float loseDelay = 2f;
     
     private NavMeshAgent agent;
@@ -19,7 +19,7 @@ public class ZombieAI : MonoBehaviour
     private int currentPoint = 0;
     private bool isChasing = false;
     private float lastViewCheck;
-    private bool canSeePlayer; // Кэшируем результат проверки
+    private bool canSeePlayer;
     private float lastTimeSeen;
 
 
@@ -28,7 +28,6 @@ public class ZombieAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         
-        // Если глаза не назначены — создаём автоматически
         if (eyes == null)
         {
             eyes = new GameObject("Eyes").transform;
@@ -44,7 +43,7 @@ public class ZombieAI : MonoBehaviour
     {
         float distance = Vector3.Distance(transform.position, player.position);
 
-        // Проверяем линию обзора не каждый кадр, а с интервалом (экономим ресурсы)
+        // Проверяем линию обзора не каждый кадр, а с интервалом
         if (Time.time - lastViewCheck > viewCheckInterval)
         {
             canSeePlayer = CheckLineOfSight(distance);
@@ -87,22 +86,20 @@ public class ZombieAI : MonoBehaviour
 
         Vector3 direction = (player.position - eyes.position).normalized;
         
-        // === ОТЛАДКА: видим луч в сцене (красная линия) ===
         Debug.DrawRay(eyes.position, direction * chaseDistance, Color.red, 2f);
         
-        // Пускаем луч БЕЗ маски слоя — проверяем ВСЁ
+        // Пускаем луч без маски слоя — проверяем все
         if (Physics.Raycast(eyes.position, direction, out RaycastHit hit, chaseDistance))
         {
-            // === ОТЛАДКА: смотрим в Console, во что попал луч ===
             Debug.Log($"Ray hit: {hit.collider.name} | Layer: {hit.collider.gameObject.layer} | Distance: {hit.distance:F2}");
             
-            // 1. Если луч попал в САМОГО игрока — значит, видим его (препятствий не было)
+            // Если луч попал в игрока — значит, видим его (препятствий не было)
             if (hit.collider.CompareTag("Player"))
             {
                 return true;
             }
             
-            // 2. Если луч попал во что-то ДРУГОЕ на пути (стена, машина, бак) — игрок скрыт
+            // 2. Если луч попал во что-то другое на пути (стена, машина, бак) — игрок скрыт
             // Проверяем, что хит ближе, чем игрок (на случай неточностей)
             if (hit.distance < distance * 0.95f) // 0.95 — небольшой запас от погрешностей
             {

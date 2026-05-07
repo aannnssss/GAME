@@ -6,7 +6,7 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
 
     float xRotation = 0f;
-    float yRotation = 0f; // ← ДОБАВЛЯЕМ переменную для поворота тела
+    float yRotation = 0f;
 
     void Start()
     {
@@ -24,9 +24,9 @@ public class MouseLook : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -80f, 80f);
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
-        // Горизонтальный поворот игрока (влево/вправо) — ЧЕРЕЗ ПЕРЕМЕННУЮ
+        // Горизонтальный поворот игрока (влево/вправо)
         yRotation += mouseX;
-        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f); // ← ФИКС: нет накопления ошибок
+        playerBody.rotation = Quaternion.Euler(0f, yRotation, 0f);
     }
 
     public void LockCursor()
