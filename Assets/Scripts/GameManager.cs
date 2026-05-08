@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,5 +29,13 @@ public class GameManager : MonoBehaviour
         matchesText.text = "Спички: " + matches + "/" + maxMatches;
         crowbarText.text = "Лом: " + crowbar + "/" + maxCrowbar;
         explosivesText.text = "Взрывчатка: " + explosives + "/" + maxExplosives;
+    }
+    public void RestartGame()
+    {
+        // Сбрасываем паузу 
+        Time.timeScale = 1f;
+        
+        // Перезагружаем текущую сцену
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
